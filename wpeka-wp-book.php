@@ -12,3 +12,4 @@ includes
 ********************************/
 include('includes/custom-post-type.php');
 include('includes/custom-taxonomy.php');
+include('includes/custom-metabox.php');
