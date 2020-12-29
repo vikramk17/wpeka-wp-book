@@ -17,8 +17,6 @@ include('includes/custom-metabox.php');
 include('includes/settings.php');
 
 
-
-
 // function to add custom table to database
 
 function wpb_book_meta_install() {
@@ -48,7 +46,6 @@ function wpb_book_meta_install() {
 register_activation_hook( __FILE__, "wpb_book_meta_install" );
 
 
-
 //hook into init for single site, priority 0 = highest priority
 add_action('init', 'wpb_bookmeta_integrate_wpdb', 0);
 
@@ -63,4 +60,23 @@ function wpb_bookmeta_integrate_wpdb() {
   	$wpdb->tables[] = 'bookmeta';
 
   	return;
+}
+
+
+//Replicate Wrapper Functions for book meta
+
+function add_book_meta( $book_id, $meta_key, $meta_value, $unique = false ) {
+	 return add_metadata( 'book', $book_id, $meta_key, $meta_value, $unique );
+}
+
+function delete_book_meta( $book_id, $meta_key, $meta_value = '' ) {
+	 return delete_metadata( 'book', $book_id, $meta_key, $meta_value );
+}
+
+function get_book_meta( $book_id, $key = '', $single = false ) {
+	 return get_metadata( 'book', $book_id, $key, $single );
+}
+
+function update_book_meta( $book_id, $meta_key, $meta_value, $prev_value = '' ) {
+	 return update_metadata( 'book', $book_id, $meta_key, $meta_value, $prev_value );
 }

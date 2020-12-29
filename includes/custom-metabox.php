@@ -54,16 +54,16 @@ add_action( "add_meta_boxes", "wpb_add_custom_meta_box" );
 //save custom meta box
 
 function wpb_save_custom_meta_box( $post_id ) {
-
+     //check if the post is auto saving
      if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 
      if ( $parent_id = wp_is_post_revision( $post_id ) ) {
        $post_id = $parent_id;
      }
-
+     //verify the nonce value we created earlier
      if (!isset($_POST["wpb_meta-box-nonce"]) || !wp_verify_nonce($_POST["wpb_meta-box-nonce"], basename(__FILE__)))
        return;
-
+    //check to make sure the current user can actually edit the post
      if( !current_user_can( 'edit_post' ) ) return;
 
      $fields = [
@@ -76,7 +76,8 @@ function wpb_save_custom_meta_box( $post_id ) {
      ];
      foreach ( $fields as $field ) {
          if ( array_key_exists( $field, $_POST ) ) {
-             update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
+             // update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
+             update_book_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
          }
      }
 }

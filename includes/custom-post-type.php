@@ -1,4 +1,4 @@
-<?php
+  <?php
 //function to create custom post type-book
 
 function wpb_register_book_post_type() {
