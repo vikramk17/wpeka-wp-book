@@ -10,11 +10,13 @@ version: 2.1.1
 /*******************************
 includes
 ********************************/
-// include('includes/custom-meta-table.php');
 include('includes/custom-post-type.php');
 include('includes/custom-taxonomy.php');
 include('includes/custom-metabox.php');
 include('includes/settings.php');
+include('includes/shortcode.php');
+include('includes/widget.php');
+include('includes/dashboard-widget.php');
 
 
 // function to add custom table to database
